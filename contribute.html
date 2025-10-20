@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contribute | Tucson Shade Network</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <div class="logo">🌵 Tucson Shade Network</div>
+    <nav>
+      <a href="index.html">Map</a>
+      <a href="about.html">About</a>
+      <a href="contribute.html" class="active">Contribute</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Contribute to the Tucson Shade Network</h1>
+      <p>Help make Tucson cooler — literally. Add data, ideas, or support.</p>
+    </section>
+
+    <section class="content">
+      <h2>🌿 Add Your Shade Ideas</h2>
+      <p>
+        You can contribute to our public map by suggesting new shade sites, trees, or community canopy projects.
+      </p>
+
+      <form id="contributeForm" class="form-card">
+        <label for="name">Name of Location:</label>
+        <input type="text" id="name" name="name" required placeholder="e.g. 4th Avenue Bus Stop">
+
+        <label for="desc">Description:</label>
+        <textarea id="desc" name="desc" required placeholder="Describe why this area needs shade..."></textarea>
+
+        <label for="type">Type of Shade:</label>
+        <select id="type" name="type" required>
+          <option value="">Select Type</option>
+          <option value="tree">Tree</option>
+          <option value="solar canopy">Solar Canopy</option>
+          <option value="awning">Awning</option>
+          <option value="covered walkway">Covered Walkway</option>
+        </select>
+
+        <label for="lat">Latitude:</label>
+        <input type="text" id="lat" name="lat" placeholder="32.2226">
+
+        <label for="lng">Longitude:</label>
+        <input type="text" id="lng" name="lng" placeholder="-110.9747">
+
+        <button type="submit">Submit Proposal</button>
+      </form>
+
+      <div id="confirmation" class="hidden">✅ Thank you! Your proposal has been saved locally.</div>
+
+      <h2>🧰 Other Ways to Help</h2>
+      <ul>
+        <li>🌳 Volunteer with local tree-planting groups like Tucson Clean & Beautiful</li>
+        <li>💻 Contribute code or design to this GitHub project</li>
+        <li>📢 Spread awareness on social media using #ShadeTucson</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ in Tucson — Open Source on <a href="https://github.com/" target="_blank">GitHub</a></p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contributeForm');
+    const confirmation = document.getElementById('confirmation');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const entry = {
+        name: form.name.value,
+        desc: form.desc.value,
+        type: form.type.value,
+        lat: form.lat.value,
+        lng: form.lng.value,
+        timestamp: new Date().toISOString()
+      };
+      const saved = JSON.parse(localStorage.getItem('shadeProposals') || '[]');
+      saved.push(entry);
+      localStorage.setItem('shadeProposals', JSON.stringify(saved));
+      confirmation.classList.remove('hidden');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
