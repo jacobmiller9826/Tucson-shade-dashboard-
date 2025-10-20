@@ -1,118 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tucson Shade Network</title>
-
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
-
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <!-- Chart.js (for small stats) -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
   <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <img src="assets/logo.png" alt="logo" class="logo" onerror="this.style.display='none'">
-      <div>
-        <div class="title">Tucson Shade Network</div>
-        <div class="subtitle">Map shade, propose sites, and advocate for cooling infrastructure</div>
-      </div>
-    </div>
-    <nav class="top-actions">
-      <button id="btnAddShade" class="btn primary">+ Add Shade</button>
-      <a href="README.md" class="btn ghost">How it works</a>
+  <header>
+    <div class="logo">🌵 Tucson Shade Network</div>
+    <nav>
+      <a href="#map">Map</a>
+      <a href="#about">About</a>
+      <a href="#contribute">Contribute</a>
     </nav>
   </header>
 
-  <div id="container">
-    <aside id="sidebar">
-      <section class="card info-card">
-        <h2>Quick Stats</h2>
-        <div class="stats-grid">
-          <div class="stat">
-            <div class="stat-value" id="totalTrees">—</div>
-            <div class="stat-label">Existing trees</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value" id="totalStructures">—</div>
-            <div class="stat-label">Shade structures</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value" id="totalProposed">—</div>
-            <div class="stat-label">Proposed</div>
-          </div>
-        </div>
-        <canvas id="miniChart" width="300" height="120"></canvas>
-      </section>
+  <main>
+    <section id="map-section">
+      <div id="map"></div>
+      <button id="addShadeBtn">+ Add Shade</button>
+    </section>
 
-      <section class="card controls-card">
-        <h3>Map Layers</h3>
-        <label><input type="checkbox" id="toggleTrees" checked> Existing trees</label>
-        <label><input type="checkbox" id="toggleStructures" checked> Shade structures</label>
-        <label><input type="checkbox" id="toggleHeat" checked> Heat zones</label>
-        <label><input type="checkbox" id="toggleProposed" checked> Proposed spots</label>
-        <hr>
-        <h3>How to propose</h3>
-        <ol>
-          <li>Click <strong>+ Add Shade</strong>.</li>
-          <li>Click the map where you want shade.</li>
-          <li>Fill the form in the modal & submit.</li>
-        </ol>
-      </section>
+    <section id="info-panel">
+      <h2>Building Shade for Tucson</h2>
+      <p>
+        Tucson is one of the hottest cities in the U.S.  
+        This project maps shade coverage and proposes new shade infrastructure —  
+        solar canopies, trees, and covered walkways — to help residents cool down.
+      </p>
 
-      <section class="card about-card">
-        <h3>About</h3>
-        <p>This open-source, static app helps residents visualize shade gaps and propose small projects. Hosted on GitHub Pages — no server required.</p>
-        <p>Data: static GeoJSON in <code>/data</code>. Proposals are stored in your browser (localStorage). Later we can wire proposals to GitHub Issues or a form service.</p>
-      </section>
-    </aside>
+      <div class="stats">
+        <canvas id="shadeChart"></canvas>
+      </div>
 
-    <main id="map" role="application" aria-label="Map"></main>
-  </div>
+      <h3>Why Shade Matters</h3>
+      <ul>
+        <li>🌳 Reduces heat islands and saves energy</li>
+        <li>😌 Makes walking and biking safer and comfortable</li>
+        <li>🌞 Supports community gathering spaces</li>
+      </ul>
+    </section>
+  </main>
 
-  <!-- Modal for proposal -->
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modal-card">
-      <button class="modal-close" id="modalClose">&times;</button>
-      <h2>Propose Shade Spot</h2>
-      <form id="proposalForm">
-        <label>
-          Name
-          <input id="pName" type="text" placeholder="Your name or project title" required>
-        </label>
-        <label>
-          Type
-          <select id="pType">
-            <option>Tree</option>
-            <option>Shade canopy / ramada</option>
-            <option>Solar canopy</option>
-            <option>Other</option>
-          </select>
-        </label>
-        <label>
-          Description
-          <textarea id="pDesc" rows="3" placeholder="Why this spot? accessibility/benefit" required></textarea>
-        </label>
-        <div class="modal-meta">
-          <div>Lat: <span id="metaLat">—</span></div>
-          <div>Lng: <span id="metaLng">—</span></div>
-        </div>
-        <div class="modal-actions">
-          <button type="button" class="btn ghost" id="cancelProposal">Cancel</button>
-          <button type="submit" class="btn primary">Submit Proposal</button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <footer>
+    <p>Made with ❤️ in Tucson — Open Source on <a href="https://github.com/" target="_blank">GitHub</a></p>
+  </footer>
 
-  <!-- Leaflet -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
