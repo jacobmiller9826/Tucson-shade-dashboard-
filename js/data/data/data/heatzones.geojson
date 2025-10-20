@@ -1,0 +1,6 @@
+{
+  "type":"FeatureCollection",
+  "features":[
+    { "type":"Feature", "properties": { "name":"High heat zone" }, "geometry": { "type":"Polygon", "coordinates":[[[-110.985,32.216],[-110.965,32.216],[-110.965,32.232],[-110.985,32.232],[-110.985,32.216]]] } }
+  ]
+}
