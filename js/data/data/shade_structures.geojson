@@ -1,0 +1,6 @@
+{
+  "type":"FeatureCollection",
+  "features":[
+    { "type":"Feature", "properties": { "name":"Bus Stop Ramada", "description":"Shaded bus stop" }, "geometry": { "type":"Point", "coordinates":[-110.9780,32.2234] } }
+  ]
+}
