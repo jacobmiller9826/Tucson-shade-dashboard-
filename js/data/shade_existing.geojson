@@ -1,0 +1,7 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type":"Feature", "properties": { "name":"Tucson Park Tree", "description":"Mature shade tree" }, "geometry": { "type":"Point", "coordinates":[-110.9718,32.2217] } },
+    { "type":"Feature", "properties": { "name":"Eastside Tree", "description":"Street tree" }, "geometry": { "type":"Point", "coordinates":[-110.9645,32.2291] } }
+  ]
+}
