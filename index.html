@@ -4,54 +4,72 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tucson Shade Network</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-o9N1j8Mk8zQ2N7XkQ0rGmjY2rLkMf3LWZ6kZJf6bYxw=" crossorigin="" />
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
+  <!-- Header -->
   <header>
-    <div class="logo">🌵 Tucson Shade Network</div>
+    <h1>🌵 Tucson Shade Network</h1>
     <nav>
-      <a href="#map">Map</a>
-      <a href="#about">About</a>
-      <a href="#contribute">Contribute</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contribute.html">Contribute</a>
+      <a href="https://github.com/yourusername/tucson-shade-map" target="_blank">GitHub</a>
     </nav>
   </header>
 
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Building Shade for a Cooler Tucson</h2>
+    <p>
+      Tucson is one of the fastest-warming cities in the U.S. — but together we can design a future where shade is accessible to everyone.
+      Explore existing shade, identify heat islands, and propose new shaded walkways, parks, and solar canopies.
+    </p>
+    <a href="contribute.html" class="btn">Propose a Shade Spot</a>
+  </section>
+
+  <!-- Main Content -->
   <main>
-    <section id="map-section">
-      <div id="map"></div>
-      <button id="addShadeBtn">+ Add Shade</button>
-    </section>
+    <div id="map"></div>
 
-    <section id="info-panel">
-      <h2>Building Shade for Tucson</h2>
+    <div class="info-card">
+      <h3>About the Map</h3>
       <p>
-        Tucson is one of the hottest cities in the U.S.  
-        This project maps shade coverage and proposes new shade infrastructure —  
-        solar canopies, trees, and covered walkways — to help residents cool down.
+        This map shows existing shaded structures, trees, and bus stops across Tucson.  
+        You can toggle layers, zoom into neighborhoods, and explore areas that need more shade infrastructure.
       </p>
+    </div>
 
-      <div class="stats">
-        <canvas id="shadeChart"></canvas>
-      </div>
-
+    <div class="info-card">
       <h3>Why Shade Matters</h3>
-      <ul>
-        <li>🌳 Reduces heat islands and saves energy</li>
-        <li>😌 Makes walking and biking safer and comfortable</li>
-        <li>🌞 Supports community gathering spaces</li>
-      </ul>
-    </section>
+      <p>
+        Urban heat disproportionately affects low-income neighborhoods and outdoor workers.  
+        Investing in shade means investing in health, safety, and quality of life for everyone.
+      </p>
+    </div>
   </main>
 
+  <!-- Footer -->
   <footer>
-    <p>Made with ❤️ in Tucson — Open Source on <a href="https://github.com/" target="_blank">GitHub</a></p>
+    <p>
+      © 2025 Tucson Shade Network — Built with ❤️ by the Tucson community.  
+      <a href="about.html">Learn more</a>
+    </p>
   </footer>
 
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-sA+e2v5M0rjFQZBTrBqsyh8H0HnQXn6v6T0zjG6LK6w=" crossorigin=""></script>
+
+  <!-- Main JS -->
   <script src="js/main.js"></script>
 </body>
 </html>
